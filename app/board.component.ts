@@ -11,7 +11,7 @@ import * as platform from 'platform';
     styleUrls: ['board.component.css']
 })
 export class BoardComponent implements OnInit {
-  public board: Board = new Board(6);
+  public board: Board = new Board(3);
 
   @ViewChild('boardGrid') boardGrid: ElementRef;
 
