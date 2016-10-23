@@ -1,0 +1,128 @@
+<!--<StackLayout -->
+  <!--class="content">-->
+  <!--<StackLayout -->
+    <!--class="top-panel"-->
+    <!--orientation="horizontal">-->
+    <!--<Button -->
+      <!--(tap)="restartGame()"-->
+      <!--class="restart" -->
+      <!--text="Restart"></Button>-->
+    <!--<StackLayout class="score-board">-->
+      <!--<StackLayout class="circle-score" orientation="horizontal">-->
+      <!--<Label -->
+        <!--class="circle-score" -->
+        <!--[text]="board.circleScore"></Label>-->
+      <!--<Image -->
+        <!--class="circle-thumb"-->
+        <!--src="~/img/circle-thumb.png"></Image>-->
+      <!--</StackLayout>-->
+      <!--<StackLayout class="cross-score" orientation="horizontal">-->
+      <!--<Label-->
+        <!--class="cross-score"-->
+        <!--[text]="board.crossScore"></Label>-->
+      <!--<Image -->
+        <!--class="cross-thumb"-->
+        <!--src="~/img/cross-thumb.png"></Image>-->
+      <!--</StackLayout>-->
+    <!--</StackLayout>-->
+  <!--</StackLayout>-->
+  <!--<StackLayout -->
+    <!--[visibility]="drawPanelVisibility"-->
+    <!--class="game-panel" >-->
+    <!--<Label -->
+      <!--class="won" -->
+      <!--text="Draw!"></Label>-->
+  <!--</StackLayout>-->
+  <!--<StackLayout -->
+    <!--[visibility]="victoryPanelVisibility"-->
+    <!--class="game-panel" -->
+    <!--orientation="horizontal">-->
+    <!--<Image class="winner-state"-->
+      <!--[src]="board.nextToPlay | squareStateFonticon"></Image>-->
+    <!--<Label -->
+      <!--class="won" -->
+      <!--text="Won!"></Label>-->
+  <!--</StackLayout>-->
+  <!--<StackLayout -->
+    <!--[visibility]="gamePanelVisibility"-->
+    <!--class="game-panel" -->
+    <!--orientation="horizontal">-->
+    <!--<Label -->
+      <!--class="next-to-play" -->
+      <!--text="Next to play "></Label>-->
+    <!--<Image class="next-state-to-play"-->
+      <!--[src]="board.currentPlayerState | squareStateFonticon"></Image>-->
+  <!--</StackLayout>-->
+<!--<GridLayout #boardGrid -->
+  <!--[columns]="boardDefinition"-->
+  <!--[rows]="boardDefinition">-->
+  <!--<template ngFor let-item [ngForOf]="board.squares">-->
+    <!--<StackLayout -->
+      <!--#square-->
+      <!--(tap)="mark(item)"-->
+      <!--[col]="item.yPosition" -->
+      <!--[row]="item.xPosition" -->
+      <!--[class]="classOf(item)">-->
+      <!--<Image -->
+        <!--class="state"-->
+        <!--[src]="item.state | squareStateFonticon"></Image>-->
+    <!--</StackLayout>-->
+  <!--</template>-->
+<!--</GridLayout>-->
+<!--</StackLayout>-->
+
+<StackLayout 
+  class="content">
+  <StackLayout 
+    class="top-panel"
+    orientation="horizontal">
+    <Button 
+      (tap)="restartGame()"
+      class="restart" 
+      text="Restart"></Button>
+    <StackLayout class="score-board">
+      <StackLayout class="circle-score" orientation="horizontal">
+        <Label 
+          class="circle-score" 
+          [text]="board.circleScore"></Label>
+        <Image 
+          class="circle-thumb"
+          src="~/img/circle-thumb.png"></Image>
+      </StackLayout>
+      <StackLayout class="cross-score" orientation="horizontal">
+        <Label
+          class="cross-score"
+          [text]="board.crossScore"></Label>
+        <Image 
+          class="cross-thumb"
+          src="~/img/cross-thumb.png"></Image>
+      </StackLayout>
+    </StackLayout>
+  </StackLayout>
+  <StackLayout 
+    class="game-panel" 
+    orientation="horizontal">
+    <Label 
+      class="next-to-play" 
+      [text]="gamePanelCaption"></Label>
+    <Image class="next-to-play"
+      [visibility]="gamePanelStateImageVisibility"
+      [src]="board.currentPlayerState | squareStateImage"></Image>
+  </StackLayout>
+  <GridLayout #boardGrid 
+    [columns]="boardSideSpecification"
+    [rows]="boardSideSpecification">
+    <template ngFor let-item [ngForOf]="board.squares">
+      <StackLayout 
+        #square
+        (tap)="mark(item)"
+        [col]="item.yPosition" 
+        [row]="item.xPosition"
+        [class]="classOf(item)">
+      <Image 
+        class="square-state"
+        [src]="item.state | squareStateImage"></Image>
+      </StackLayout>
+    </template>
+  </GridLayout>
+</StackLayout>
